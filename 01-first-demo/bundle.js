@@ -42,11 +42,22 @@
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	/*** entry.js ***/
 	document.getElementById('app').innerHTML="这是我第一个打包成功的程序";
 
+	// 添加依赖
+	__webpack_require__(1);
+
+
+/***/ },
+/* 1 */
+/***/ function(module, exports) {
+
+	var h2= document.createElement("h2")
+	h2.innerHTML="不是吧，那么快第二个打包程序啦！";
+	document.body.appendChild(h2);
 
 /***/ }
 /******/ ]);
