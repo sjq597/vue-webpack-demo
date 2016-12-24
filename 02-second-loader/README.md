@@ -71,3 +71,19 @@ Module not found: Error: Cannot resolve 'file' or 'directory' ./style.css in /vu
  @ ./entry.js 5:0-33
 ```
 完成后，刷新我们的页面，背景颜色是不是已经变成了红色了呢？
+
+### 扩展名自动绑定loader
+这就是我们的`loader`的使用方式了。如果每次`require CSS`文件的时候都要写`loader`前缀`!style!css!`这样的东西，显然是一件很麻烦的事情。
+我们需要它可以根据模块类型(扩展名)来自动绑定需要的`loader`。有两种方式，先说简单的
+
+* 命令行打包参数指定绑定违规
+修改`entry.js`文件中的`require("!style!css!./style.css")`修改为`require("./style.css")`,然后执行:
+```
+webpack entry.js bundle.js --module-bind "css=style\!css"
+```
+编译好之后打开看看，效果和之前是一样的.
+**备注:** 命令行里面的`!`在`shell`中有特殊含义，要用`\`转义。
+
+* 配置文件指定
+每次手输实在太麻烦，我们可不可以像`package.json`那样,既可以自动生成配置文件，又可以手动修改配置文件，然后直接按配置文件来读，执行相关操
+作呢？当然可以，事实上，一般都是这么干的。但是这是个很大的内容，所以我放到下一章专门来讲。
