@@ -73,3 +73,38 @@ bundle.js  11.8 kB       0  [emitted]  main
     ]
 ```
 然后从新编译,编译成功就可以在`bundle.js`中看到我们写的注释了。
+
+### 后记
+上面讲了一个简单的插件用法，也没啥奇特的，下面的是一点不是很重要的东西，赶时间的可以直接看下一章。
+我讲一下一个插件[Webpack Visualizer](https://github.com/chrisbateman/webpack-visualizer),这个插件可以把你编译的过程可视化，可以
+用来分析构建瓶颈,首先需要安装插件:
+```
+npm i webpack-visualizer-plugin -D
+```
+然后修改`webpack.config.js`文件:
+```js
+var Webpack = require("webpack");
+var Visualizer = require('webpack-visualizer-plugin');
+
+module.exports = {
+    entry: ["./entry.js"],
+    output: {
+        ...
+    },
+    module: {
+        ...
+    },
+    plugins: [
+        // 注意插件可能不止一个，也是个数组,Webpack就是最上面引入的变量
+        new Webpack.BannerPlugin("打包文件头部测试\nFBI Warning!!!"),
+        new Visualizer({
+            filename: './statistics.html'
+        })
+    ]
+}
+```
+然后重新编译，除了会生成一个`bundle.js`文件之外，还会生成一个分析结果页面`statistics.html`，打开就可以看到分析图，这里面就是分析结果,
+如果想获取统计结果到文件,还可这样:
+```
+webpack --json > stats.json
+```
