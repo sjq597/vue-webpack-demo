@@ -102,3 +102,85 @@ Options:
 这里还需要讲一个东西，全局和本地，刚才加了`-g`参数是把`webpack`安装到了全局,但是一般每个项目的环境，依赖模块应该是一个单独的环境，既然
 用到了`webpack`这个包，那么也得本地安装，我们从一个例子来说明一下这个步骤:
 
+以后每一个项目初始化都是一样的过程:
+```
+mkdir xxx
+cd xxx
+npm init    # 初始化一个项目，可能会让你填一些具体的信息，如果懒得填，直接回车跳过也行
+
+# 本地安装webpack依赖
+npm install webpack --save-dev
+# 等价
+npm i webpack -D
+```
+**备注:**`npm init`会生成一个`package.json`的文件，–save`:模块名将被添加到`package.json`文件的`dependencies`配置，可以简化为参数-S;
+`–save-dev`:模块名将被添加到`devDependencies`，可以简化为参数-D。其实就是方便你不用再写配置文件，加了之后会自动 写进去，你也可以后面
+再手动编辑。
+
+[01 first demo](01-first-demo/)
+我们来看第一个例子:
+```
+mkdir 01-first-demo
+cd 01-first-demo
+npm init
+npm webpack i -D
+```
+然后选择填一些内容，跳过一些内容，会在当前目录生成一个`package.json`文件,内容大概如下:
+```
+{
+  "name": "01-first-demo",
+  "version": "1.0.0",
+  "description": "01-first-demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sjq597",
+  "license": "MIT"
+}
+```
+既然环境都已经安装好了，那么我们就开始来用webpack进行我们的第一个打包运行程序吧！
+
+我们需要创建一个静态页面(一般默认是`index.html`)以及一个入口文件(一般是`entry.js`),具体的名字其实不用纠结，按默认的来就行，开始学东西
+都按标准来会比较轻松:
+
+静态页面文件`index.html`:
+```html
+<!-- index.html -->
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+    <h1 id="app"></h1>
+    <!-- 注意这里引入的不是我们创建的entry.js文件，而是用webpack生成的文件 -->
+    <script src="bundle.js"></script>
+</body>
+</html>
+```
+入口文件`entry.js`:
+```js
+/*** entry.js ***/
+document.getElementById('app').innerHTML="这是我第一个打包成功的程序";
+```
+准备文件都搞定了，可以开始打包了:
+```
+➜  01-first-demo git:(master) ✗ webpack entry.js bundle.js
+Hash: 08b204922bb023a72de5
+Version: webpack 1.14.0
+Time: 50ms
+    Asset     Size  Chunks             Chunk Names
+bundle.js  1.47 kB       0  [emitted]  main
+   [0] ./entry.js 77 bytes {0} [built]
+```
+最终的目录结构就像下面这样:
+```
+➜  01-first-demo git:(master) ✗ tree -L 1
+.
+├── bundle.js
+├── entry.js
+├── index.html
+├── node_modules
+└── package.json
+```
+然后用浏览器打开`index.html`文件，就可以看到我们写在js里面的代码了。
