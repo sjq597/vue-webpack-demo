@@ -123,3 +123,50 @@ npm i webpack-dev-server -D
 ```
 webpack-dev-server
 ```
+打开`localhost:8080`就可以看到我们的页面了，可以尝试修改样式文件，查看终端编译变化。虽然可以自己重新编译了，但是有个问题，浏览器没办法
+自动刷新，还得手动刷新才行，如果想自动刷新：
+```
+webpack-dev-server --hot --inline
+```
+这个是简单的命令行方式，这样不是很方便，能写到配置文件里面最好了，需要修改一下`webpack.config.js`文件：
+1. 把`webpack/hot/dev-server`加入到`webpack`配置文件的`entry`项；
+2. 把`new webpack.HotModuleReplacementPlugin()`加入到`webpack`配置文件的`plugins`项；
+
+`webpack.config.js`最终的配置如下：
+```js
+var Webpack = require("webpack");
+
+module.exports = {
+    entry: [
+        'webpack/hot/dev-server',
+        'webpack-dev-server/client?http://localhost:8080',
+        "./entry.js"
+    ],
+    output: {
+        path: __dirname,
+        filename: "bundle.js"
+    },
+    module: {
+        loaders: [
+            {
+                test: /\.css$/,
+                loader: "style!css"
+            },
+            {
+                test: /\.(jpg|png)$/,
+                loader: "url-loader?limit=8192&name=./[name].[ext]"
+            }
+        ]
+    },
+    plugins: [
+        // 注意插件可能不止一个，也是个数组,Webpack就是最上面引入的变量
+        new Webpack.BannerPlugin("打包文件头部测试\nFBI Warning!!!"),
+        new Webpack.HotModuleReplacementPlugin()
+    ]
+}
+```
+然后直接在终端运行：
+```
+webpack-dev-server
+```
+然后手动修改`style.css`文件查看效果，这回不用手动刷新了。
