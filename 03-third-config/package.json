@@ -1,7 +1,7 @@
 {
-  "name": "02-second-loader",
+  "name": "03-third-config",
   "version": "1.0.0",
-  "description": "02-second-loader",
+  "description": "03-third-config",
   "main": "bundle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
