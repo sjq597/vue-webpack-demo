@@ -1,0 +1,11 @@
+#small-img {
+    background-image: url(./img/small-img.png);
+    height: 117px;
+    width: 170px;
+}
+
+#big-img {
+    background-image: url(./img/big-img.jpg);
+    height: 147px;
+    width: 181px;
+}

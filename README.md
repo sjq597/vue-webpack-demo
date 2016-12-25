@@ -125,3 +125,4 @@ npm i webpack -D
 1. [01 first demo](01-first-demo)
 2. [02 second loader](02-second-loader)
 3. [03 third config](03-third-config)
+4. [04 forth image](04-forth-image)

@@ -1,0 +1,18 @@
+{
+  "name": "04-forth-image",
+  "version": "1.0.0",
+  "description": "04-forth-image",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sjq597",
+  "license": "MIT",
+  "devDependencies": {
+    "css-loader": "^0.26.1",
+    "file-loader": "^0.9.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.14.0"
+  }
+}
