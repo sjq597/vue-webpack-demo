@@ -107,3 +107,19 @@ npm i file-loader -D
 然后执行`webpack`编译,打开`index.html`文件查看效果.打开浏览器的调试窗口查看效果.点击到对应的元素，查看`style`窗口就可以看到差别:
 * 正常`<img>`标签图片大小没有超过8k，没有被转成`base64`,超过8k的`big-img.jpg`也没有被转化;
 * `small-img.png`被转成了`base64`,并且`style.css`中写的`url(./img/xxx)`也被替换了。
+
+### 热加载
+有没有发现每次调整图片的路径，大小，样式等都要手动编译然后手动打开文件看效果特别麻烦，所以也就有了热加载这个概念,其实其他的编译工具都具备
+了这个功能，业内专业叫法HMR(hot module replacement),这里说一下怎么用`webpack`的热更新。
+`webpack`为我们提供了一个`webpack --watch`,他会启动监听模式。开启监听模式后，没有变化的模块会在编译后缓存到内存中，而不会每次都被重新
+编译，所以监听模式的整体速度是很快的。但是有一点，你必须得刷新一下浏览器才能看到效果,所以有一个更牛逼的插件`webpack-dev-server`.
+它将在`localhost:8080`启动一个`express`静态资源`web`服务器，并且会以监听模式自动运行`webpack`，在浏览器打开`http://localhost:8080/`
+或`http://localhost:8080/webpack-dev-server/`可以浏览项目中的页面和编译后的资源输出，并且通过一个`socket.io`服务实时监听它们的变化
+并自动刷新页面:
+```
+npm i webpack-dev-server -D
+```
+然后运行:
+```
+webpack-dev-server
+```
