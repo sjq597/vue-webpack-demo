@@ -170,3 +170,32 @@ module.exports = {
 webpack-dev-server
 ```
 然后手动修改`style.css`文件查看效果，这回不用手动刷新了。
+
+
+### 简单的vue例子
+既然讲到热更新，那就配合着来一个`vue`数据绑定热更新的例子，修改`entry.js`文件:
+```js
+// 这里直接用require("vue")会报错,详情参见:
+// https://forum-archive.vuejs.org/topic/4399/vue-2-0-vue-warn-failed-to-mount-component-template-or-render-function-not-defined-found-in-root-instance/6
+var Vue =require("vue/dist/vue.js");
+
+new Vue({
+    el: "#app1",
+    data: {
+        message: "hello vue"
+    }
+});
+```
+然后你还需要修改`index.html`文件:
+```html
+<div id="app1">{{ message }}</div>
+```
+当然必须安装`vue`了:
+```
+npm i vue -D
+```
+这里安装的是`Vue 2.x`版本,然后启动:
+```
+webpack-dev-server
+```
+可以尝试改变message的指看看热更新效果
