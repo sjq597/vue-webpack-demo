@@ -43,6 +43,7 @@ node: v4.1.1
 1. 配置npm源
 由于某些你懂的原因，官方的源很多时候用不了，所以就有很多第三方的镜像，其实很多公司都会有一套自己的私有镜像，例如`maven,pypi,npm`等,这里
 介绍一个针对`npm`源管理的东西[nrm](https://github.com/Pana/nrm)
+
 #### Example
 ```
 $ nrm ls
