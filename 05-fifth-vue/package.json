@@ -1,0 +1,23 @@
+{
+  "name": "05-fifth-vue",
+  "version": "1.0.0",
+  "description": "05-fifth-vue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "vue",
+    "webpack"
+  ],
+  "author": "sjq597",
+  "license": "MIT",
+  "devDependencies": {
+    "css-loader": "^0.26.1",
+    "vue": "^2.1.8",
+    "vue-loader": "^10.0.2",
+    "vue-template-compiler": "^2.1.8",
+    "webpack": "^1.14.0",
+    "webpack-dev-server": "^1.16.2"
+  }
+}
